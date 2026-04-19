@@ -6,12 +6,14 @@ Team _______
 
 ## Team Members
 
+<<<<<<< HEAD
 | Member Name               | Vulnerability Found                              | Branch Name                  |
 |--------------------------|--------------------------------------------------|------------------------------|
 | Mukhtar Ali              | Missing Security Headers                         | mukhtar_missing_headers      |
 | Mukhtar Ali              | Open CORS Misconfiguration                       | mukhtar_cors_check           |
 | Muhammad-Amin Farhan Ali | Open Redis Port / Unauthenticated Redis Access   | farhan_redis_check           |
 | Muhammad-Amin Farhan Ali | Internal Infrastructure Information Leak         | farhan_internal_header_leak  |
+=======
 
 ## Videos
 
