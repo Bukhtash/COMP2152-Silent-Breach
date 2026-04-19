@@ -6,11 +6,12 @@ Team _______
 
 ## Team Members
 
-| Member | Vulnerability Found | Branch Name |
-|--------|-------------------|-------------|
-| _______ | _______ | _______ |
-| _______ | _______ | _______ |
-| _______ | _______ | _______ |
+| Member Name               | Vulnerability Found                              | Branch Name                  |
+|--------------------------|--------------------------------------------------|------------------------------|
+| Mukhtar Ali              | Missing Security Headers                         | mukhtar_missing_headers      |
+| Mukhtar Ali              | Open CORS Misconfiguration                       | mukhtar_cors_check           |
+| Muhammad-Amin Farhan Ali | Open Redis Port / Unauthenticated Redis Access   | farhan_redis_check           |
+| Muhammad-Amin Farhan Ali | Internal Infrastructure Information Leak         | farhan_internal_header_leak  |
 
 ## Videos
 
@@ -18,7 +19,7 @@ Each team member records a short video (max 3 minutes) explaining their vulnerab
 
 - Member 1: https://youtube.com/watch?v=_______
 - Member 2: https://youtube.com/watch?v=_______
-- Member 3: https://youtube.com/watch?v=_______
+
 
 ## Target
 
