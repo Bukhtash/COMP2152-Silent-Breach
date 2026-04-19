@@ -1,5 +1,9 @@
 # ============================================================
+<<<<<<< HEAD
 #  COMP2152 — Term Project: Silent Breach
+=======
+#  COMP2152 — Term Project: CTF Bug Bounty
+>>>>>>> farhan_redis_check
 #  Author: Muhammad-Amin Farhan Ali
 #  Vulnerability: Open Redis Port / Unauthenticated Redis Check
 #  Target: redis.0x10.cloud (edit if needed)
