@@ -1,0 +1,80 @@
+# ============================================================
+#  COMP2152 — Term Project: Silent Breach
+#  Author: Muhammad-Amin Farhan Ali
+#  Vulnerability: Internal Infrastructure Information Leak
+#  Target: cdn.0x10.cloud
+# ============================================================
+#
+#  This script checks HTTP response headers for internal
+#  infrastructure details, such as proxy headers, backend
+#  identifiers, and internal/private IP addresses.
+#  Revealing internal network details helps attackers map
+#  server architecture and plan further attacks.
+# ============================================================
+
+import urllib.request
+import time
+import re
+
+target = "http://cdn.0x10.cloud"
+
+print("=" * 60)
+print("  Internal Header Leak Check")
+print("=" * 60)
+
+try:
+    time.sleep(0.15)
+
+    response = urllib.request.urlopen(target, timeout=5)
+    headers = dict(response.headers)
+
+    print(f"\nTarget: {target}")
+    print("Inspecting headers for internal information...\n")
+
+    interesting_headers = [
+        "X-Forwarded-For",
+        "X-Real-IP",
+        "X-Backend-Server",
+        "Via",
+        "Forwarded"
+    ]
+
+    found = []
+
+    # Simple private/internal IP regex patterns
+    private_ip_patterns = [
+        r"\b10\.\d{1,3}\.\d{1,3}\.\d{1,3}\b",
+        r"\b192\.168\.\d{1,3}\.\d{1,3}\b",
+        r"\b172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}\b"
+    ]
+
+    for header in interesting_headers:
+        value = headers.get(header)
+        if value:
+            found.append((header, value))
+
+    if found:
+        print("Headers found:")
+        for header, value in found:
+            print(f" - {header}: {value}")
+
+        leaked_private_ip = False
+        for _, value in found:
+            for pattern in private_ip_patterns:
+                if re.search(pattern, value):
+                    leaked_private_ip = True
+                    break
+
+        print("\n[!] VULNERABILITY FOUND")
+        print("The response leaks internal infrastructure details through HTTP headers.")
+        if leaked_private_ip:
+            print("At least one private/internal IP address pattern was detected.")
+        else:
+            print("Sensitive proxy/backend identification headers were exposed.")
+    else:
+        print("[OK] No obvious internal infrastructure headers were found.")
+
+except Exception as e:
+    print(f"\n[ERROR] Could not inspect internal headers: {e}")
+
+print("\n" + "=" * 60)
